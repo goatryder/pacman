@@ -3,6 +3,8 @@
 
 #include "PacmanPawn.h"
 
+#include "Foodie.h"
+
 // Sets default values
 APacmanPawn::APacmanPawn()
 {
@@ -17,7 +19,6 @@ void APacmanPawn::BeginPlay()
 	Super::BeginPlay();
 	
 	OnActorBeginOverlap.AddDynamic(this, &APacmanPawn::OnOverlapBegin);
-
 }
 
 // Called every frame
@@ -64,7 +65,17 @@ void APacmanPawn::SetDirection(const FVector Direction)
 
 }
 
+
 void APacmanPawn::OnOverlapBegin(AActor* PlayerActor, AActor* OtherActor)
 {
+	
+	UE_LOG(LogTemp, Warning, TEXT("COLLIDE"));
+
+	if (OtherActor->ActorHasTag("FoodieRegular")) {
+
+		Cast<AFoodie>(OtherActor)->Consume();
+
+	}
+
 }
 

@@ -39,7 +39,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void SetFrozen(bool Value) { Frozen = Value; }
 
-private:
+public:
 
 	UFUNCTION()
 		void OnOverlapBegin(AActor* PlayerActor, AActor* OtherActor);
