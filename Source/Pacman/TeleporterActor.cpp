@@ -11,7 +11,7 @@
 // Sets default values
 ATeleporterActor::ATeleporterActor()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 }
@@ -21,8 +21,9 @@ void ATeleporterActor::BeginPlay()
 {
 	Super::BeginPlay();
 
+
 	OnActorBeginOverlap.AddDynamic(this, &ATeleporterActor::OnOverlapBegin);
-	
+
 }
 
 // Called every frame
@@ -35,7 +36,7 @@ void ATeleporterActor::Tick(float DeltaTime)
 void ATeleporterActor::TeleportToTarget(AActor* Actor)
 {
 
-	USceneComponent* TargetSpawn = Cast<USceneComponent>(Target->GetDefaultSubobjectByName("Spawn"));
+	USceneComponent* TargetSpawn = Cast<USceneComponent>(Target->GetDefaultSubobjectByName(TEXT("Spawn")));
 
 	UGameplayStatics::PlaySound2D(this, TeleportSound);
 
@@ -46,7 +47,7 @@ void ATeleporterActor::TeleportToTarget(AActor* Actor)
 void ATeleporterActor::OnOverlapBegin(AActor* TeleporterActor, AActor* OtherActor)
 {
 
-	if (OtherActor->ActorHasTag("Pacman")) {
+	if (OtherActor->ActorHasTag(TEXT("Pacman"))) {
 
 		GetWorldTimerManager().SetTimerForNextTick([OtherActor, this]() { TeleportToTarget(OtherActor); });
 

@@ -6,6 +6,8 @@
 #include "GameFramework/Pawn.h"
 #include "PacmanPawn.generated.h"
 
+// class APacmanGameMode;
+
 UCLASS()
 class PACMAN_API APacmanPawn : public APawn
 {
@@ -45,5 +47,5 @@ private:
 	UFUNCTION()
 		void OnOverlapBegin(AActor* PlayerActor, AActor* OtherActor);
 
-
+	// APacmanGameMode* PacmanGM;
 };

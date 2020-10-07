@@ -5,6 +5,9 @@
 
 #include "Foodie.h"
 
+// #include "PacmanGameMode.h"
+// #include "Kismet/GameplayStatics.h"
+
 // Sets default values
 APacmanPawn::APacmanPawn()
 {
@@ -19,6 +22,8 @@ void APacmanPawn::BeginPlay()
 	Super::BeginPlay();
 	
 	OnActorBeginOverlap.AddDynamic(this, &APacmanPawn::OnOverlapBegin);
+
+	// PacmanGM = Cast<APacmanGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
 }
 
 // Called every frame

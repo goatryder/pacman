@@ -4,8 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+
 #include "Foodie.generated.h"
 
+class APacmanGameMode;
 class USoundCue;
 
 UENUM(BlueprintType)
@@ -44,6 +46,8 @@ public:
 		FFoodieEatenEvent FoodieEatenEvent;
 
 private:
+
+	APacmanGameMode* PacmanGM;
 
 	UPROPERTY(EditAnywhere)
 		USoundCue* ConsumtionSound;

@@ -6,6 +6,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "Sound/SoundCue.h"
 
+#include "PacmanGameMode.h"
+
 // Sets default values
 AFoodie::AFoodie()
 {
@@ -18,7 +20,15 @@ AFoodie::AFoodie()
 void AFoodie::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	PacmanGM = Cast<APacmanGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+
+	if (PacmanGM != nullptr) {
+
+		PacmanGM->IncrFoodiesNum(1);
+
+	}
+
 }
 
 // Called every frame
@@ -37,5 +47,10 @@ void AFoodie::Consume()
 
 	Destroy();
 
-}
+	if (PacmanGM != nullptr) {
 
+		PacmanGM->IncrFoodiesNum(-1);
+
+	}
+
+}
